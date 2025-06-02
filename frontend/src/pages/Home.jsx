@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from '../components/Hero'
 import Features from '../components/Features'
-import NewArriwals from '../components/NewArriwals'
+import NewArrivals from '../components/NewArrivals'
 import PopularProducts from '../components/PopularProducts'
 import Banner from '../components/Banner'
 import About from '../components/About'
@@ -14,7 +14,7 @@ const Home = () => {
     <>
         <Hero />
         <Features />
-        <NewArriwals />
+        <NewArrivals />
         <PopularProducts />
         <Banner />
         <About />
