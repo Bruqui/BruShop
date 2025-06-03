@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Item = ({product}) => {
+const Item = ({ product }) => {
+  const [hovered, setHovered] = useState(false)
+
   return (
     <div className='overflow-hidden'>
-        {/* IMAGE */}
-        <Link to={"/"}>
-            <img src={product.image[0]} alt="productImg" className='flexCenter p-2 bg-[#f5f5f5] overflow-hidden relative' />
-        </Link>
-        {/* INFO */}
-        <div>
-            <h4>{product.name}</h4>
-            <div>
-                <p>{product.category}</p>
-                <h5>${product.price}.00</h5>
-            </div>
-            <p>{product.description}</p>
+      {/* IMAGE */}
+      <Link to={"/"} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='flexCenter p-2 bg-[#f5f5f5] overflow-hidden relative'>
+        <img src={product.image.length > 1 && hovered ? product.image[1] : product.image[0]} alt='productImg' className=' transition-all duration-300' />
+      </Link>
+      {/* INFO */}
+      <div className=' p-3 '>
+        <h4 className=' bold-15 line-clamp-1 !py-0 '>
+          {product.name}
+        </h4>
+        <div className='flexBetween pt-1'>
+          <p className=' h5 '>{product.category}</p>
+          <h5 className=' h5 pr-2 '>${product.price}.00</h5>
         </div>
+        <p className=' line-clamp-2 py-1'>{product.description}</p>
+      </div>
     </div>
   )
 }
