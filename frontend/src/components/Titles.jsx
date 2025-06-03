@@ -10,7 +10,7 @@ const Titles = ({title1, title2, titleStyles, title1Styles, paraStyles}) => {
             </span>
         </h2>
         <p className={`${paraStyles} hidden`}>
-            Discover the best deals on top-quality products, Crafted to elevate your everyday experience.
+            Discover the best deals on top-quality products, Crafted <br/>to elevate your everyday experience.
         </p>
     </div>
   )
