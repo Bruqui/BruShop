@@ -11,7 +11,7 @@ import { products } from "../assets/data"
 import { ShopContext } from '../context/ShopContext'
 
 const NewArriwals = () => {
-  const {products} = useContext(ShopContext)
+  const { products } = useContext(ShopContext)
   const [PopularProducts, setPopularProducts] = useState([])
 
   useEffect(() => {
