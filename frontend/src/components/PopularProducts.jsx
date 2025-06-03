@@ -8,7 +8,7 @@ const PopularProducts = () => {
 
   useEffect(() => {
     const data = products.filter(item => item.popular)
-    setPopularProducts(data)
+    setPopularProducts(data.slice(0, 5))
   })
 
   return (
