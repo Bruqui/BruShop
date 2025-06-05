@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaDribbble, FaFacebookF, FaInstagram} from 'react-icons/fa6'
+import { FaDribbble, FaFacebookF, FaInstagram } from 'react-icons/fa6'
 
 const NewsLetter = () => {
   return (
