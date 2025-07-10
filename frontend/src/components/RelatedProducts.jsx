@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useContext, useEffect, useState } from 'react'
 import Titles from './Titles'
 import { products } from '../assets/data'
 import Item from './Item'
+import { ShopContext } from '../context/ShopContext'
 
 const RelatedProducts = ({ category }) => {
-    const [popularProducts, setPopularProducts] = useState([])
+    const { products } = useContext(ShopContext);
+    const [relatedProducts, setRelatedProducts] = useState([])
 
     useEffect(() => {
-        const data = products.filter(item => item.popular)
-        setPopularProducts(data.slice(0, 5))
-    }, [products])
+        if (products.length > 0) {
+            let filtered = products.slice();
+            filtered = filtered.filter((item) => category === item.category);
+            setRelatedProducts(filtered.slice(0, 5));
+        }
+    }, [products]);
 
     return (
-        <section className='max-padd-container pt-16'>
-            <Titles title1={"Popular"} title2={"Products"} titleStyles={"pb-10"} paraStyles={"!block"} />
+        <section className='py-16'>
+            <Titles
+                title1={"Related"}
+                title2={"Products"}
+                titleStyles={"pb-10"}
+            />
             {/** CONTAINER */}
             <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8'>
-                {popularProducts.map(product => (
+                {relatedProducts.map(product => (
                     <div key={product._id}>
                         <Item product={product} />
                     </div>
