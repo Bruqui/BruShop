@@ -15,7 +15,7 @@ const Footer = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             earum reprehenderit possimus!
           </p>
-          <img src={cards} alt="" height={33} width={144} className="mt-5"/>
+          <img src={cards} alt="" height={33} width={144} className="mt-5" />
         </div>
         <div className="flexStart gap-7 xl:gap-x-36 flex-wrap">
           <ul>
