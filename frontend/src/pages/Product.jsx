@@ -5,6 +5,9 @@ import { FaCheck, FaHeadSideCough, FaHeart, FaStar } from 'react-icons/fa';
 import { FaStarHalfStroke, FaTruckFast } from 'react-icons/fa6';
 import { TbShoppingBagPlus } from 'react-icons/tb';
 import ProductDescription from '../components/ProductDescription';
+import ProductFeatures from '../components/ProductFeatures';
+import RelatedProducts from '../components/RelatedProducts';
+import Footer from '../components/Footer';
 
 const Product = () => {
     const { productId } = useParams()
@@ -96,7 +99,10 @@ const Product = () => {
                     </div>
                 </div>
                 <ProductDescription />
+                <ProductFeatures />
+                <RelatedProducts category={product.category} />
             </div>
+            <Footer />
         </div>
     )
 }
