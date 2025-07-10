@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Titles from './Titles'
-import { products } from '../assets/data'
-import Item from './Item'
+import React, { useContext, useEffect, useState } from 'react';
+import Titles from './Titles';
+import Item from './Item';
+import { ShopContext } from '../context/ShopContext';
 
 const PopularProducts = () => {
   const [popularProducts, setPopularProducts] = useState([])
+  const {products} = useContext(ShopContext)
 
   useEffect(() => {
     const data = products.filter(item => item.popular)
