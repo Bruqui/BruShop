@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
-import { FaCheck, FaHeadSideCough, FaHeart, FaStar } from 'react-icons/fa';
+import { FaCheck, FaHeart, FaStar } from 'react-icons/fa';
 import { FaStarHalfStroke, FaTruckFast } from 'react-icons/fa6';
 import { TbShoppingBagPlus } from 'react-icons/tb';
 import ProductDescription from '../components/ProductDescription';
@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 
 const Product = () => {
     const { productId } = useParams()
-    const { products, currency } = useContext(ShopContext)
+    const { products, currency, addToCart } = useContext(ShopContext)
     const [product, setProduct] = useState(null)
     const [image, setImage] = useState("")
     const [color, setColor] = useState("")
@@ -21,7 +21,7 @@ const Product = () => {
         if (selectedProduct) {
             setProduct(selectedProduct)
             setImage(selectedProduct.image[0])
-            console.log(selectedProduct)
+            //console.log(selectedProduct)
         }
     }
 
@@ -42,7 +42,7 @@ const Product = () => {
                     <div className='flex flex-1 gap-x-2 max-w-[477px]'>
                         <div className='flex-1 flexCenter flex-col gap-[7px] flex-wrap'>
                             {product.image.map((item, i) => (
-                                <img src={item} alt="prdcImg" className='object-cover aspect-square rounded-lg' />
+                                <img key={i} src={item} alt="prdcImg" className='object-cover aspect-square rounded-lg' />
                             ))}
                         </div>
                         <div className='flex-[4] flex'>
@@ -77,7 +77,7 @@ const Product = () => {
                             </div>
                         </div>
                         <div className='flex items-center gap-x-4'>
-                            <button onClick={() => { }} className='btn-secondary !rounded-lg sm:w-1/2 flexCenter gap-x-2 capitalize'>
+                            <button onClick={() => addToCart(product._id, color)} className='btn-secondary !rounded-lg sm:w-1/2 flexCenter gap-x-2 capitalize'>
                                 Add to Cart <TbShoppingBagPlus />
                             </button>
                             <button className='btn-white !rounded-lg !py-3.5'>
