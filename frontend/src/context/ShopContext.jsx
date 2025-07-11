@@ -80,6 +80,7 @@ const ShopContextProvider = (props) => {
     }, [cartItems]);
 
     const value = {
+        navigate,
         products,
         search,
         setSearch,
