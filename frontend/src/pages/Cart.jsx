@@ -7,7 +7,7 @@ import CartTotal from '../components/CartTotal';
 import Footer from '../components/Footer';
 
 const Cart = () => {
-    const { products, currency, cartItems, getCartCount } = useContext(ShopContext);
+    const { products, currency, cartItems, getCartCount, updateQuantity } = useContext(ShopContext);
 
     const [cartData, setCartData] = useState([])
     const [quantities, setQuantities] = useState({})
@@ -25,7 +25,7 @@ const Cart = () => {
                             color: item,
                             quantity: cartItems[items][item]
                         })
-                        initialQuantities[`${item}-${item}`] = cartItems[items][item]
+                        initialQuantities[`${items}-${item}`] = cartItems[items][item]
                     }
                 }
             }
@@ -38,7 +38,16 @@ const Cart = () => {
         const key = `${id}-${color}`;
         const newValue = quantities[key] + 1;
         setQuantities((prev) => ({ ...prev, [key]: newValue }))
-        updateQuantity
+        updateQuantity(id, color, newValue)
+    }
+
+    const decrement = (id, color) => {
+        const key = `${id}-${color}`;
+        if (quantities[key] > 1) {
+            const newValue = quantities[key] - 1;
+            setQuantities((prev) => ({ ...prev, [key]: newValue }))
+            updateQuantity(id, color, newValue)
+        }
     }
 
     return (
@@ -68,16 +77,16 @@ const Cart = () => {
                                                 <h5 className='h5 !my-0 line-clamp-1'>
                                                     {productData.name}
                                                 </h5>
-                                                <FaRegWindowClose className='cursor-pointer text-secondary' />
+                                                <FaRegWindowClose onClick={() => updateQuantity(item._id, item.color, 0)} className='cursor-pointer text-secondary' />
                                             </div>
                                             <p className='bold-14 my-0.5'>{item.color}</p>
                                             <div className='flexBetween'>
                                                 <div className='flex items-center ring-1 ring-slate-900/5 rounded-full overflow-hidden bg-primary'>
-                                                    <button className='p-1.5 bg-white text-secondary rounded-full shadow-md'>
+                                                    <button onClick={() => decrement(item._id, item.color)} className='p-1.5 bg-white text-secondary rounded-full shadow-md'>
                                                         <FaMinus className='text-xs' />
                                                     </button>
                                                     <p className='px-2'>{quantities[key]}</p>
-                                                    <button className='p-1.5 bg-white text-secondary rounded-full shadow-md'>
+                                                    <button onClick={() => increment(item._id, item.color)} className='p-1.5 bg-white text-secondary rounded-full shadow-md'>
                                                         <FaPlus className='text-xs' />
                                                     </button>
                                                 </div>
