@@ -47,7 +47,7 @@ const Login = () => {
                   </div>
                   <div className='underline medium-15'>
                     Don't have an account?
-                    <span onClick={() => setCurrState("Sign Up")} className='cursor-pointer'>
+                    <span onClick={() => setCurrState("Sign Up")} className='cursor-pointer pl-1'>
                       Create account
                     </span>
                   </div>
