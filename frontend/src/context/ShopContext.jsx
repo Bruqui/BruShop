@@ -51,9 +51,32 @@ const ShopContextProvider = (props) => {
         return totalCount;
     };
 
+    // UPDATING THE QUANTITY OF CART ITEMS
+    const updateQuantity = (itemId, color, quantity) => {
+        let cartData = structuredClone(cartItems)
+        cartData[itemId][color] = quantity;
+        setCartItems(cartData)
+    }
+
+    // GETTING TOTAL CART AMOUNT
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const items in cartItems) {
+            let itemsInfo = products.find((product) => product._id === items);
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][items] > 0) {
+                        totalAmount += itemsInfo.price * cartItems[items][item];
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        return totalAmount;
+    };
+
     useEffect(() => {
-        // Debug log for development
-        console.log("Cart Items Updated:", cartItems);
     }, [cartItems]);
 
     const value = {
@@ -65,7 +88,9 @@ const ShopContextProvider = (props) => {
         cartItems,
         setCartItems,
         addToCart,
-        getCartCount
+        getCartCount,
+        updateQuantity,
+        getCartAmount
     };
 
     return (
