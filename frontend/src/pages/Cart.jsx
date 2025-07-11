@@ -6,6 +6,8 @@ const Cart = () => {
 
     const [cartData, setCartData] = useState([])
     const [quantities, setQuantities] = useState({})
+
+
     useEffect(() => {
         if (products.length > 0) {
             const tempData = []
@@ -22,12 +24,17 @@ const Cart = () => {
                     }
                 }
             }
-            console.log(tempData);
+            setCartData(tempData);
+            setQuantities(initialQuantities);
         }
-    }, [cartItems, products])
+    }, [cartItems, products]);
 
-    return <div>Cart</div>
+    return
+    <div>
+        <div>
+
+        </div>
+    </div>
 };
-
 
 export default Cart;
