@@ -5,9 +5,9 @@ import NewArrivals from '../components/NewArrivals'
 import PopularProducts from '../components/PopularProducts'
 import Banner from '../components/Banner'
 import About from '../components/About'
-import Blog from './Blog'
 import NewsLetter from '../components/NewsLetter'
 import Footer from '../components/Footer'
+import Blog from '../components/Blog'
 
 const Home = () => {
   return (
