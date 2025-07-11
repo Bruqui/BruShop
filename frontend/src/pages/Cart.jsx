@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
+import Titles from '../components/Titles';
 
 const Cart = () => {
-    const { products, currency, cartItems } = useContext(ShopContext);
+    const { products, currency, cartItems, getCartCount } = useContext(ShopContext);
 
     const [cartData, setCartData] = useState([])
     const [quantities, setQuantities] = useState({})
@@ -29,12 +30,18 @@ const Cart = () => {
         }
     }, [cartItems, products]);
 
-    return
-    <div>
+    return (
         <div>
-
+            <div>
+                <div>
+                    <div>
+                        <Titles title1={"Cart"} title2={"List"} title1Styles={'h3'} />
+                        <h5>({getCartCount()})</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    )
 };
 
 export default Cart;
