@@ -24,7 +24,7 @@ const Cart = () => {
             }
             console.log(tempData);
         }
-    }, [cartItems])
+    }, [cartItems, products])
 
     return <div>Cart</div>
 };
