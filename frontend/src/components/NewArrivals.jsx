@@ -21,7 +21,7 @@ const NewArriwals = () => {
 
   return (
     <section className=' max-padd-container pt-16'>
-      <Titles title1={'New'} title2={'Arrivals'} titleStyles={'pb-10'} paraStyles={'!block'} />
+      <Titles title1={'New'} title2={'Arrivals'} titleStyles={'pb-14'} paraStyles={'!block'} />
       {/* CONTAINER */}
       <Swiper
         autoplay={{
