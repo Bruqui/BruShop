@@ -5,7 +5,7 @@ const Navbar = ({ containerStyles, onClick }) => {
     const navLinks = [
         { path: '/', title: 'Home' },
         { path: '/collection', title: 'Collection' },
-        { path: '/bolg', title: 'Blog' },
+        { path: '/blog', title: 'Blog' },
         { path: 'mailto:bruqui.games@gmail.com', title: 'Contact' },
     ]
     return (
