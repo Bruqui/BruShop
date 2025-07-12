@@ -103,7 +103,7 @@ const Collection = () => {
 
         {/* RIGHT SIDE */}
         <div className='pr-5 rounded-l-xl'>
-          <div className='grid grid-cols-1 xs: grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-6 '>
+          <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-6 '>
             {getPaginatedProducts().length > 0 ? (
               getPaginatedProducts().map((product) => (
                 <Item key={product.id} product={product} />
