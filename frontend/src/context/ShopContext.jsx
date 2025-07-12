@@ -1,15 +1,17 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { products } from '../assets/data';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
     const [search, setSearch] = useState("");
-    const [cartItems, setCartItems] = useState({});
+    const [products, setProducts] = useState([])
+    const [cartItems, setCartItems] = useState({})
+    const [token, setToken] = useState('')
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate();
-
     const currency = "$";
     const delivery_charges = 10;
 
@@ -20,9 +22,7 @@ const ShopContextProvider = (props) => {
             return;
         }
 
-        // Deep clone cartItems (you can use structuredClone if supported)
-        const cartData = JSON.parse(JSON.stringify(cartItems));
-
+        let cartData = structuredClone(cartItems)
         if (cartData[itemId]) {
             if (cartData[itemId][color]) {
                 cartData[itemId][color] += 1;
@@ -30,10 +30,24 @@ const ShopContextProvider = (props) => {
                 cartData[itemId][color] = 1;
             }
         } else {
-            cartData[itemId] = { [color]: 1 };
+            cartData[itemId] = {}
+            cartData[itemId][color] = 1
         }
 
         setCartItems(cartData);
+
+        if (token) {
+            try {
+                await axios.post(
+                    backendUrl + "/api/cart/add",
+                    { itemId, color },
+                    { headers: { token } }
+                )
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+            }
+        }
     };
 
     // GETTING TOTAL CART COUNT
@@ -76,7 +90,25 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     };
 
+    const getProductData = async () => {
+        try {
+            const response = await axios.get(backendUrl + "/api/product/list")
+            if (response.data.success) {
+                setProducts(response.data.products)
+            } else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
+        if (!token && localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"))
+        }
+        getProductData()
     }, [cartItems]);
 
     const value = {
@@ -91,7 +123,10 @@ const ShopContextProvider = (props) => {
         addToCart,
         getCartCount,
         updateQuantity,
-        getCartAmount
+        getCartAmount,
+        token,
+        setToken,
+        backendUrl
     };
 
     return (
