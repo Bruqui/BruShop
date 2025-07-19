@@ -35,10 +35,10 @@ const Orders = ({ token }) => {
     try {
       const response = await axios.post(
         backend_url + "/api/order/status",
-        {orderId, status: event.target.value},
-        {headers: {token}},
+        { orderId, status: event.target.value },
+        { headers: { token } },
       );
-      if(response.data.success){
+      if (response.data.success) {
         await fetchAllOrders();
       }
     } catch (error) {
@@ -77,7 +77,7 @@ const Orders = ({ token }) => {
               </div>
               <p className='medium-14'>
                 <span className='text-tertiary'>
-                  Name: 
+                  Name:
                 </span>
                 {order.address.firstName + " " + order.address.lastName}
               </p>
@@ -111,7 +111,7 @@ const Orders = ({ token }) => {
             <p className='text-sm font-semibold'>
               {currency}{order.amount}
             </p>
-            <select onChange={(event)=>statusHandler(event, order._id)} value={order.status} className='text-xs font-semibold p-1 ring-1 ring-slate-900/5 rounded max-w-36 bg-primary'>
+            <select onChange={(event) => statusHandler(event, order._id)} value={order.status} className='text-xs font-semibold p-1 ring-1 ring-slate-900/5 rounded max-w-36 bg-primary'>
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
               <option value="Shipped">Shipped</option>
