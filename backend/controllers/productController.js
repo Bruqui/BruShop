@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary"
 import productModel from "../models/productModel.js"
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 
 // CONTROLLER FUNCTION FOR ADDING PRODUCT
 const addProduct = async (req, res) => {
@@ -67,7 +67,6 @@ const removeProduct = async (req, res) => {
 // CONTROLLER FUNCTION FOR ADDING PRODUCT
 const listProduct = async (req, res) => {
     try {
-        // console.log("DB connection ready state:", mongoose.connection.readyState);
         const products = await productModel.find({})
         res.json({ success: true, products })
     } catch (error) {
