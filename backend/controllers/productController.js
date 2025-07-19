@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary"
 import productModel from "../models/productModel.js"
+import mongoose from 'mongoose';
 
 // CONTROLLER FUNCTION FOR ADDING PRODUCT
 const addProduct = async (req, res) => {
