@@ -6,7 +6,7 @@ const Navbar = ({ containerStyles, onClick }) => {
         { path: '/', title: 'Home' },
         { path: '/collection', title: 'Collection' },
         { path: '/blog', title: 'Blog' },
-        { path: 'mailto:bruqui.games@gmail.com', title: 'Contact' },
+        { path: 'mailto:dylangdcontact@gmail.com', title: 'Contact' },
     ]
     return (
         <nav className={`${containerStyles}`}>
