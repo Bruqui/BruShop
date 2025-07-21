@@ -9,7 +9,7 @@ const Sidebar = ({ setToken }) => {
             <div className='flex flex-col gap-y-6 max-sm:items-center sm:flex-col pt-4 sm:pt-14'>
                 {/** LOGO */}
                 <Link to={'/'} className='bold-22 xl:bold-32 sm:pl-2 lg:pl-12'>
-                    Shopanza
+                    BruShop
                 </Link>
                 {/** LINKS */}
                 <div className='flex sm:flex-col gap-x-5 gap-y-8 sm:pt-10'>
